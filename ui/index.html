@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>YouTube Api</title>
+    </head>
+    <body>
+        <form>
+            <label for="URLField">Еnter video full URL</label>
+            <input type="text" id="URLField" placeholder="https://www.youtube.com/watch?v=7lCDEYXw3mM">
+            <button type="button" id="get_views" onclick="getViews()">Get views</button>
+        </form>
+
+        <h1>Views</h1>
+        <h2 id="viewValue">Views</h2>
+
+        <script src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+[package]
+name = "youtube-api"
+version = "0.0.0"
+description = "GUI YouTube API tool"
+authors = ["Patysoncick (Edgar Kozlov)"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "*", features = [] }
+
+[dependencies]
+tauri = { version = "*", features = [ "dialog-all", "shell-open"] }
+reqwest = { version = "*", features = ["json"] }
+tokio = { version = "*", features = ["full"] }
+serde = { version = "*", features = ["derive"] }
+serde_json = "*"
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
