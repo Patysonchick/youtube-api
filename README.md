@@ -15,7 +15,7 @@ Example normal output `cargo 1.75.0 (1d8b05cdd 2023-11-20)`
 
 ## After Rust successful installed
 Run in terminal/console
-1. Install Prerequisites from https://tauri.app/v1/guides/getting-started/prerequisites
+1. Install prerequisites from https://tauri.app/v1/guides/getting-started/prerequisites
 2. `cargo install create-tauri-app --locked`
 3. `cargo install tauri-cli`
 
