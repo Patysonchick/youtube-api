@@ -13,9 +13,11 @@
     font-size: 30px;
 }
 
-#url{
+.url{
+    display: inline;
     margin-top: 8px;
     margin-bottom: 2px;
+    
 }
 .buttons{
     display: flex;
