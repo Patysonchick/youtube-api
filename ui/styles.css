@@ -19,6 +19,11 @@
     margin-bottom: 2px;
     
 }
+
+#url_input{
+    margin-left: 1px;
+}
+
 .buttons{
     display: flex;
     align-items: center;
