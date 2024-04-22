@@ -6,16 +6,22 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>YouTube Api</title>
     </head>
-    <body>
+    <body>           
+        <p id="head">YouTube API tester</p>
         <form>
-            <label for="URLField">Еnter video full URL</label>
-            <input type="text" id="URLField" placeholder="https://www.youtube.com/watch?v=7lCDEYXw3mM">
-            <button type="button" id="get_views" onclick="getViews()">Get views</button>
+            <p id="url">Enter full URL of video:</p>
+            <input type="text" id="URLField" placeholder="https://www.youtube.com/watch?v=7lCDEYXw3mM" size="40">
+            <div class="buttons">
+                <button type="button" id="get_views" onclick="getViews()">Get views</button>
+                <button type="button" id="get_views" onclick="getLikes()">Get likes</button>                
+                <button type="button" id="get_views" onclick="getComments()">Get dislikes</button>
+            </div>  
         </form>
-
-        <h1>Views</h1>
-        <h2 id="viewValue">Views</h2>
-
+        <ul class="result">
+            <li>Views:</li>
+            <li>Likes:</li>
+            <li>Dislikes:</li>
+        </div>
         <script src="main.js"></script>
     </body>
 </html>
