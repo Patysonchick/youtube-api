@@ -27,12 +27,13 @@
 .buttons{
     display: flex;
     align-items: center;
+    
 }
 .result{
   list-style-type: none;
   display: inline-flex;
   margin: 0px 0px 0px 0px;
-  padding: 2px;
+  padding: 0px;
 }
 
 input, button {
