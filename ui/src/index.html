@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet">
+    <title>YouTube Api</title>
+</head>
+<body class="font-roboto bg-gray-950 text-white">
+    <div data-tauri-drag-region class="h-7 bg-gray-900 select-none p-1 flex justify-between sticky top-0 left-0 right-0">
+        <img src="res/icon.png" alt="icon" class="h-5 w-5"/>
+
+        <div class="bg-green-600 rounded-md px-1">
+            <p class="font-bold text-s text-center">YouTube API</p>
+        </div>
+        
+        <div class="bg-green-600 rounded-md">
+            <div class="inline-flex justify-center items-center h-5 w-5 rounded-l-md hover:bg-gray-500" id="titlebar-minimize">
+                <img src="https://api.iconify.design/mdi:window-minimize.svg" alt="minimize"/>
+            </div>
+            <div class="inline-flex justify-center items-center h-5 w-5 hover:bg-gray-500" id="titlebar-maximize">
+                <img src="https://api.iconify.design/mdi:window-maximize.svg" alt="maximize"/>
+            </div>
+            <div class="inline-flex justify-center items-center h-5 w-5 rounded-r-md hover:bg-red-600" id="titlebar-close">
+                <img src="https://api.iconify.design/mdi:close.svg" alt="close"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center items-center">
+        <form>
+            <p class="p-2 mb-2 bg-gray-800 text-green-600 rounded-b-2xl text-lg font-bold" id="url">Enter full video URL:</p>
+            <input type="text" class="rounded-xl p-1 border-2 bg-black border-green-600 focus:font-bold focus:m-2" id="urlfield" placeholder="https://www.youtube.com/watch?v=7lCDEYXw3mM" size="37">
+            <div>
+                <button type="button" class="p-2 m-2 rounded-xl text-lg font-semibold bg-gray-800 hover:bg-green-500" onclick="getViews()">Get views</button>
+            </div>
+        </form>
+    </div>
+                    
+    <div class="absolute bottom-0 right-0 w-full bg-gray-800 text-green-600 rounded-t-2xl text-center p-1">
+        <h2 class="font-extrabold text-2xl" id="result">- - - -</h2>
+        <h1 class="" id="resulttitle">__</h1>
+    </div>
+
+    <h6 class="absolute bottom-0 right-0 p-1 text-black text-xs font-thin" id="versionid">Unknown version</h6>
+
+    <script src="main.js"></script>
+</body>
+</html>

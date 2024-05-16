@@ -1,19 +1,19 @@
 [package]
 name = "youtube-api"
-version = "0.0.0"
+version = "0.1.0"
 description = "GUI YouTube API tool"
 authors = ["Patysoncick (Edgar Kozlov)"]
 edition = "2021"
 
 [build-dependencies]
-tauri-build = { version = "*", features = [] }
+tauri-build = { version = "^1.5.1", features = [] }
 
 [dependencies]
-tauri = { version = "*", features = [ "dialog-all", "shell-open"] }
-reqwest = { version = "*", features = ["json"] }
-tokio = { version = "*", features = ["full"] }
-serde = { version = "*", features = ["derive"] }
-serde_json = "*"
+tauri = { version = "^1.6.2", features = [ "window-unmaximize", "dialog-message", "dialog-save", "dialog-ask", "dialog-confirm", "window-start-dragging", "window-maximize", "window-hide", "window-close", "window-show", "window-unminimize", "dialog-open", "window-minimize", "shell-open", "shell-execute"] }
+reqwest = { version = "^0.12.4", features = ["json"] }
+tokio = { version = "^1.37.0", features = ["full"] }
+serde = { version = "^1.0.200", features = ["derive"] }
+serde_json = "^1.0.116"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
