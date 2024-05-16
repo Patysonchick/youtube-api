@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@tauri-apps/api": "^1.5.4",
+    "tailwindcss": "^3.4.3"
+  }
+}

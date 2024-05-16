@@ -1,34 +1,47 @@
 {
   "build": {
-    "devPath": "../ui",
-    "distDir": "../ui",
+    "devPath": "../ui/src",
+    "distDir": "../ui/src",
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "youtube-api",
-    "version": "0.0.0"
+    "productName": "YouTube API",
+    "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
       "all": false,
       "shell": {
         "all": false,
+        "execute": true,
         "open": true
       },
       "dialog": {
-        "all": true,
+        "all": false,
         "ask": true,
         "confirm": true,
         "message": true,
         "open": true,
         "save": true
+      },
+      "window" : {
+        "all": false,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
       }
     },
     "windows": [
       {
         "title": "YouTube API",
         "width": 800,
-        "height": 600
+        "height": 600,
+        "decorations": false
       }
     ],
     "security": {

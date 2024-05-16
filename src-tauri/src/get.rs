@@ -1,50 +1,59 @@
 use serde_json::Value;
-
-const KEY: &str = "AIzaSyAmD2JHQ3oFyHgnipQvtRWnO1_LN7A7cC8";
+use crate::utils::get_token;
 
 #[tauri::command]
-pub async fn get_views(raw_video_id: &str) -> Result<u128, ()> {
-    static APP_USER_AGENT: &str = concat!(
-        env!("CARGO_PKG_NAME"),
-        "/",
-        env!("CARGO_PKG_VERSION")
-    );
+pub async fn get_views(raw_video_id: &str) -> Result<u128, String> {
+    let token= match get_token() {
+        Ok(string) => string,
+        Err(_) => return Err("No token".to_string()),
+    };
+
+    static APP_USER_AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"));
     let client = reqwest::Client::builder()
         .user_agent(APP_USER_AGENT)
         .build()
         .expect("error while building client");
 
-    // https://www.youtube.com/watch?v=7lCDEYXw3mM
+    if &raw_video_id[..32] != "https://www.youtube.com/watch?v=" {
+        return Err("Incorrect video link".to_string());
+    }
     let video_id = &raw_video_id[32..];
 
-    // https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=YOUR_API_KEY&part=snippet,statistics&fields=items(id,snippet,statistics)
     let response = client
-        .get(format!("https://www.googleapis.com/youtube/v3/videos?id={}&key={}&part={}&fields={}",
-            video_id,
-            KEY,
-            "statistics",
-            "items(statistics(viewCount))")
-        )
+        .get(format!(
+            "https://www.googleapis.com/youtube/v3/videos?id={}&key={}&part={}&fields={}",
+            video_id, 
+            token, 
+            "statistics", 
+            "items(statistics(viewCount))"
+        ))
         .send()
         .await
         .expect("error while sending request");
 
-    let status = response.status();
+    let status = response
+        .status()
+        .to_string();
     let response = response
         .text()
         .await
         .expect("error while getting text");
-    println!("{}: {}",
-        status,
-        response);
+    println!("{}: {}", status, response);
+
+    //Гавнокод ON
+    if status != "200 OK" {
+        return Err(status);
+    }
+    //Гавнокод OFF
 
     let json: Value = serde_json::from_str(&response).unwrap();
-    let views = json["items"][0]["statistics"]["viewCount"]
-        .to_string();
-    let views = &views[1..views.len()-1];
-    let views = views
-        .parse::<u128>()
-        .unwrap();
+    let views = json["items"][0]["statistics"]["viewCount"].to_string();
+    println!("{}", views);
+    if views == r#""""# {
+        return Err("No video statistics, maybe incorrect video ID".to_string());
+    }
+    let views = &views[1..views.len() - 1];
+    let views = views.parse::<u128>().unwrap();
     println!("Views: {}", views);
 
     Ok(views)
