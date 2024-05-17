@@ -8,7 +8,10 @@ pub async fn get_views(raw_video_id: &str) -> Result<u128, String> {
         Err(_) => return Err("No token".to_string()),
     };
 
-    static APP_USER_AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"));
+    static APP_USER_AGENT: &str = concat!(
+        env!("CARGO_PKG_NAME"), 
+        "/", 
+        env!("CARGO_PKG_VERSION"));
     let client = reqwest::Client::builder()
         .user_agent(APP_USER_AGENT)
         .build()
@@ -38,20 +41,21 @@ pub async fn get_views(raw_video_id: &str) -> Result<u128, String> {
         .text()
         .await
         .expect("error while getting text");
-    println!("{}: {}", status, response);
+    let output = format!("{}: {}", status, response);
 
-    //Гавнокод ON
+    // Гавнокод ON
     if status != "200 OK" {
-        return Err(status);
+        println!("{}", output);
+        return Err(output);
     }
-    //Гавнокод OFF
+    // Гавнокод OFF
 
     let json: Value = serde_json::from_str(&response).unwrap();
     let views = json["items"][0]["statistics"]["viewCount"].to_string();
-    println!("{}", views);
-    if views == r#""""# {
+    if views == "null" {
         return Err("No video statistics, maybe incorrect video ID".to_string());
     }
+
     let views = &views[1..views.len() - 1];
     let views = views.parse::<u128>().unwrap();
     println!("Views: {}", views);

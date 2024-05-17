@@ -1,14 +1,14 @@
 use std::fs;
 use std::env;
 
-const TOKEN_PATH: &str = "TOKEN";
+const TOKEN_PATH: &str = ".token";
 
 #[tauri::command]
 pub fn get_token() -> Result<String, ()> {
     let file = fs::read_to_string(TOKEN_PATH); // .expect("can`t read file")
     match file {
         Ok(string) => {
-            println!("Readed token: {}", string);
+            // println!("Readed token: {}", string);
             Ok(string)
         },
         Err(_) => {
